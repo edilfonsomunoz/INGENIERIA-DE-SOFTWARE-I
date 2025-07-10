@@ -1,0 +1,203 @@
+NOMBRE DE APLICACIÓN TIME FLOW
+1. Caso de uso: Importar Datos
+Actor: Usuario
+Precondición: El usuario ha accedido al sistema.
+Poscondición: El usuario tiene los datos importados en el sistema.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona el tipo de fuente de datos (Archivo o Base de datos).
+2.	Si es un archivo, el usuario selecciona el archivo deseado (CSV, Excel, JSON).
+3.	Si es una base de datos, el usuario selecciona la base de datos a la que conectarse.
+4.	El sistema importa los datos y muestra una vista preliminar para verificar la carga correcta.
+5.	Si el usuario no dispone de datos, el sistema le ofrece la opción de generar automáticamente una serie simulada con un mínimo de 100 y un máximo de 1000 observaciones y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Archivo no válido:
+En el paso 2, si el archivo seleccionado no es válido (por ejemplo, formato incorrecto o archivo corrupto), el sistema muestra un mensaje de error y permite al usuario seleccionar otro archivo o cancelarlo, luego el caso de uso finaliza.
+• Conexión fallida a la base de datos:
+En el paso 3, si el sistema no puede conectar con la base de datos seleccionada (por ejemplo, credenciales incorrectas o error de red), el sistema muestra un mensaje de error y permite al usuario intentar de nuevo o cancelar la operación, luego el caso de uso finaliza.
+2. Caso de uso: Conectar a fuentes de datos
+Actor: Usuario
+Precondición: El usuario ha accedido al sistema.
+Poscondición: El usuario está conectado a una fuente de datos en tiempo real.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la opción para conectarse a una fuente de datos en tiempo real desde la interfaz.
+2.	El sistema solicita las credenciales o parámetros necesarios para la conexión (como URL, claves de autenticación o tokens).
+3.	El sistema establece la conexión a la fuente de datos en tiempo real a través de Streamlit.
+4.	El sistema recibe y muestra los datos en tiempo real para su procesamiento y análisis.
+Flujos de eventos alternativos:
+• Código de usuario o contraseña erradas:
+En el paso 2, si el código de usuario o contraseña son incorrectos, el sistema muestra un mensaje y solicita las credenciales nuevamente.
+• Fuente de datos no disponible:
+En el paso 3, si la fuente de datos no está disponible, el sistema muestra un mensaje de error y el caso de uso finaliza.
+3. Caso de uso: Detectar y manejar valores atípicos
+Actor: Usuario
+Precondición: El usuario ha cargado una serie temporal de datos.
+Poscondición: Los valores atípicos han sido manejados correctamente.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el sistema recibe una serie de tiempo para su análisis.
+2.	El sistema detecta automáticamente los valores atípicos dentro de la serie de tiempo.
+3.	El sistema muestra una lista de los valores atípicos detectados al usuario.
+4.	El usuario selecciona una acción a realizar (por ejemplo, reemplazar con la media, eliminar o aplicar un tratamiento específico).
+5.	El sistema aplica el tratamiento seleccionado y actualiza la serie de tiempo.
+Flujos de eventos alternativos:
+• No se detectan valores atípicos:
+En el paso 3, si el sistema no puede identificar un valor atípico, muestra un mensaje indicando que no se encontraron valores atípicos y el caso de uso finaliza.
+4. Caso de uso: Interpolar y completar datos faltantes
+Actor: Usuario
+Precondición: El usuario ha cargado una serie temporal con datos faltantes.
+Poscondición: Los datos faltantes han sido interpolados o completados.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el sistema detecta que existen valores faltantes en la serie temporal.
+2.	El sistema solicita al usuario que seleccione el método de interpolación deseado (por ejemplo, lineal, polinomial, spline).
+3.	El sistema aplica el método de interpolación seleccionado a los datos faltantes.
+4.	El sistema muestra la serie temporal completa con los valores interpolados.
+Flujos de eventos alternativos:
+• Método de interpolación no aplicable:
+En el paso 2, si el método de interpolación seleccionado no es aplicable a los datos, el sistema muestra un mensaje de error y solicita seleccionar otro método.
+5. Caso de uso: Normalizar y estandarizar los datos
+Actor: Usuario
+Precondición: El usuario ha cargado los datos a normalizar o estandarizar.
+Poscondición: Los datos han sido normalizados o estandarizados.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona el conjunto de datos que desea normalizar o estandarizar.
+2.	El sistema presenta las técnicas disponibles (por ejemplo, min-max, z-score, robust scaling).
+3.	El usuario selecciona la técnica que desea aplicar.
+4.	El sistema aplica la técnica seleccionada y muestra los resultados.
+Flujos de eventos alternativos:
+• Método de normalización no aplicable:
+En el paso 3, si el método de normalización seleccionado no es aplicable a los datos, el sistema muestra un mensaje de error y solicita seleccionar otro método.
+6. Caso de uso: Visualizar datos de forma interactiva
+Actor: Usuario
+Precondición: El usuario ha cargado los datos que desea visualizar.
+Poscondición: El usuario ha visualizado los datos interactivos.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona el tipo de gráfico deseado (líneas, barras, dispersión, etc.).
+2.	El sistema genera el gráfico con los datos seleccionados.
+3.	El usuario puede interactuar con el gráfico (realizar zoom, desplazarse).
+4.	El sistema permite al usuario guardar o exportar la visualización generada.
+Flujos de eventos alternativos:
+• Gráfico no generado correctamente:
+En el paso 2, si el gráfico no se genera correctamente, el sistema muestra un mensaje de error y el caso de uso finaliza.
+7. Caso de uso: Habilitar zoom y desplazamiento en visualizaciones
+Actor: Usuario
+Precondición: El usuario ha cargado un gráfico para interactuar.
+Poscondición: El usuario puede hacer zoom y desplazarse en el gráfico.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario visualiza un gráfico generado.
+2.	El sistema habilita los controles de zoom y desplazamiento en la visualización.
+3.	El usuario ajusta la vista según el rango temporal o área de interés.
+4.	El sistema actualiza el gráfico en tiempo real según la interacción del usuario.
+Flujos de eventos alternativos:
+• Controles de zoom no disponibles:
+En el paso 2, si los controles de zoom no están disponibles, el sistema muestra un mensaje de error y el caso de uso finaliza.
+8. Casos de uso: Revisar componentes de series de tiempo
+Actor: Usuario
+Precondición: El usuario ha cargado una serie de tiempo en el sistema.
+Poscondición: El usuario ha revisado los componentes de la serie de tiempo.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la serie de tiempo que desea analizar.
+2.	El sistema descompone la serie temporal utilizando herramientas como seasonal_decompose o Prophet.
+3.	El sistema presenta los componentes de la serie (tendencia, estacionalidad, residuo) al usuario.
+4.	El usuario revisa los resultados y guarda los hallazgos relevantes y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Gráfico no generado correctamente:
+En el paso 2, si el sistema no puede generar el gráfico, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+9. Casos de uso: Calculadora ACF y PACF
+Actor: Usuario
+Precondición: El usuario ha cargado una serie de tiempo en el sistema.
+Poscondición: El usuario ha obtenido las funciones ACF y PACF de la serie.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la serie de tiempo que desea analizar.
+2.	El sistema calcula las funciones de autocorrelación (ACF) y autocorrelación parcial (PACF).
+3.	El sistema presenta los resultados de ACF y PACF en forma de gráfico.
+4.	El usuario interpreta los gráficos y ajusta los modelos según sea necesario y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Cálculo no realizado:
+En el paso 2, si el sistema no puede calcular ACF y PACF, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+10. Casos de uso: Identificador de patrones temporales
+Actor: Usuario
+Precondición: El usuario ha cargado una serie de tiempo en el sistema.
+Poscondición: El sistema ha identificado patrones temporales y ha recomendado un modelo adecuado.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la serie de tiempo que desea analizar.
+2.	El sistema realiza pruebas de estacionariedad (por ejemplo, Dickey-Fuller) para evaluar la naturaleza de la serie.
+3.	El sistema identifica los patrones temporales (tendencia, estacionalidad, irregularidad) en la serie.
+4.	El sistema presenta los patrones identificados al usuario.
+5.	El sistema recomienda el tipo de modelo a aplicar según los patrones encontrados y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Prueba de estacionariedad fallida:
+En el paso 2, si la prueba de estacionariedad no se puede realizar, el sistema muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+11. Casos de uso: Aplicar modelo SARIMA
+Actor: Usuario
+Precondición: El usuario ha identificado patrones temporales en la serie de tiempo.
+Poscondición: El modelo SARIMA ha sido aplicado y los resultados se han mostrado.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la opción de modelado.
+2.	El sistema solicita al usuario definir los parámetros estacionales y no estacionales del modelo SARIMA (p, d, q) y (P, D, Q, s).
+3.	El sistema entrena el modelo SARIMA sobre la serie temporal proporcionada.
+4.	El sistema muestra los resultados: métricas de ajuste, coeficientes estimados y gráfico del pronóstico.
+5.	El usuario puede guardar el modelo o realizar ajustes y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Parámetros no definidos correctamente:
+En el paso 2, si los parámetros no son definidos correctamente, el sistema muestra un mensaje de error y solicita al usuario que los ajuste y el caso de uso finaliza.
+12. Casos de uso: Validación del modelo SARIMA
+Actor: Usuario
+Precondición: El modelo SARIMA ha sido aplicado.
+Poscondición: El usuario ha validado el modelo SARIMA.
+Flujo de eventos básico:
+1.	El caso de uso comienza después de aplicar el modelo SARIMA.
+2.	El sistema evalúa los residuos del modelo con pruebas como Ljung-Box, normalidad, independencia y heterocedasticidad.
+3.	El sistema presenta los resultados de validación en forma de resumen y gráficos.
+4.	El usuario interpreta la validez del modelo y decide si es adecuado y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Validación fallida:
+En el paso 2, si la validación no es exitosa, el sistema muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+13. Casos de uso: Generar pronósticos con SARIMA
+Actor: Usuario
+Precondición: El modelo SARIMA ha sido validado.
+Poscondición: El usuario ha obtenido los pronósticos generados por el modelo SARIMA.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona el número de periodos a pronosticar.
+2.	El sistema genera las predicciones a futuro usando el modelo SARIMA validado.
+3.	El sistema presenta los resultados con gráficos, intervalos de confianza y tabla resumen.
+4.	El usuario puede exportar los pronósticos y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Error en los pronósticos:
+En el paso 2, si el sistema no puede generar los pronósticos, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+14. Casos de uso: Interpretación automática de resultados
+Actor: Usuario
+Precondición: El usuario ha obtenido los resultados de análisis y pronósticos.
+Poscondición: El usuario ha recibido una interpretación automatizada de los resultados.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario solicita una interpretación de los resultados.
+2.	El sistema genera una interpretación automatizada en lenguaje natural de los principales hallazgos del análisis y pronóstico.
+3.	El sistema presenta un resumen con las conclusiones más relevantes y recomendaciones.
+4.	El usuario puede editar, exportar o guardar el informe y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Error en la interpretación:
+En el paso 2, si el sistema no puede generar la interpretación, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+15. Casos de uso: Generar informe ejecutivo automático
+Actor: Usuario
+Precondición: El usuario ha realizado un análisis y generado pronósticos.
+Poscondición: El usuario ha generado un informe ejecutivo con los resultados del análisis.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario solicita un informe ejecutivo.
+2.	El sistema recopila los resultados de análisis, pronósticos y visualizaciones.
+3.	El sistema redacta automáticamente un informe estructurado y claro con títulos, subtítulos y explicaciones.
+4.	El usuario puede revisar y guardar el informe en PDF y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Informe no generado correctamente:
+En el paso 3, si el sistema no puede generar el informe, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
+16. Casos de uso: Guardar resultados en PDF
+Actor: Usuario
+Precondición: El usuario ha generado los resultados de análisis y pronósticos.
+Poscondición: El usuario ha guardado los resultados en formato PDF.
+Flujo de eventos básico:
+1.	El caso de uso comienza cuando el usuario selecciona la opción de guardar los resultados generados.
+2.	El sistema recopila todos los datos, análisis, visualizaciones y cualquier otra información relevante generada durante el proceso.
+3.	El sistema presenta una vista previa de los resultados antes de ser guardados.
+4.	El usuario confirma y selecciona el formato PDF para guardar los resultados.
+5.	El sistema genera un archivo PDF con todos los resultados seleccionados.
+6.	El sistema guarda el archivo PDF en la ubicación deseada por el usuario y el caso de uso finaliza.
+Flujos de eventos alternativos:
+• Error al guardar el archivo PDF:
+En el paso 5, si el sistema no puede generar el archivo PDF, muestra un mensaje de error y permite al usuario intentar de nuevo y el caso de uso finaliza.
